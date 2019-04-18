@@ -11,10 +11,12 @@
 // GetCount function
 
 int GetCount(POSITION ** ppElement) {
+	// In this case, we can't do anything because we do not know where in the
+	// list we are starting from.  Since users of this library generally might
+	// be calling this function after everything has been removed from a list,
+	// assume that null input means a count of zero should be returned.
 	if (ppElement == NULL || *ppElement == NULL) {
-		return 0;			// unable to determine element count; assume that
-								// this is because we are being asked to count
-								// the elements in a list that has no elements
+		return 0;
 	}
 
 	// Get ready to iterate through the list; use the pointer in ppElement
