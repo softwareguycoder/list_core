@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // GetCount function
 
-int GetCount(POSITION ** ppElement) {
+int GetCount(POSITION** ppElement) {
 	// In this case, we can't do anything because we do not know where in the
 	// list we are starting from.  Since users of this library generally might
 	// be calling this function after everything has been removed from a list,
@@ -21,7 +21,7 @@ int GetCount(POSITION ** ppElement) {
 
 	// Get ready to iterate through the list; use the pointer in ppElement
 	// to get a reference to the head of the list by calling GetHeadPosition
-	POSITION *pos = GetHeadPosition(ppElement);
+	POSITION* pos = GetHeadPosition(ppElement);
 	if (pos == NULL) {
 		// this just means the list has nothing in it.
 		return 0;
