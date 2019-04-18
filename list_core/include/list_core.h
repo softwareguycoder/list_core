@@ -23,6 +23,17 @@
  */
 typedef void (*LPACTION_ROUTINE)(void*);
 
+/**
+ * @brief Callback to be used to compare two elements of the linked list.
+ * @param pKey Address of a memory location that holds the search key.
+ * @param pData Address of the current element in the list.
+ * @returns TRUE if the current element of the list has information matching
+ * the search key; FALSE otherwise.
+ * @remarks Use this as the function signature for a comparison routine whose
+ * address is to be provided to the FindElement function.
+ */
+typedef BOOL (*LPCOMPARE_ROUTINE)(void*, void*);
+
 ///////////////////////////////////////////////////////////////////////////////
 // Functions
 
