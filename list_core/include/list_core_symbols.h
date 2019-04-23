@@ -63,4 +63,13 @@
     "The pointer for the data to add to the linked list is an invalid value.\n"
 #endif //INVALID_LIST_DATA
 
+/**
+ * @brief Error message that is displayed when a function is given a NULL
+ * pointer for its lpfnDeallocRoutine parameter.
+ */
+#ifndef NO_DEALLOC_ROUTINE_SPECIFIED
+#define NO_DEALLOC_ROUTINE_SPECIFIED \
+	"No address specified for deallocation routine in DestroyList.\n"
+#endif //NO_DEALLOC_ROUTINE_SPECIFIED
+
 #endif /* __LIST_CORE_SYMBOLS_H__ */
