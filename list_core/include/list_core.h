@@ -48,6 +48,15 @@ typedef void (*LPDEALLOC_ROUTINE)(void*);
 // Functions
 
 /**
+ * @brief Adds a new member to the linked list.
+ * @param ppListHead Address of the address of a POSITION structure that
+ * denotes the location of the list's head.
+ * @param pvData Address of the data to place in the new linked list node.
+ * @returns TRUE if the add operation succeeded; FALSE otherwise.
+ */
+BOOL AddTail(POSITION** ppListHead, void* pvData);
+
+/**
  * @brief Creates a linked list and makes the first node refer to the data
  * specified.
  * @param pvData Address of the data that the first node should refer to.
@@ -56,16 +65,7 @@ typedef void (*LPDEALLOC_ROUTINE)(void*);
  * @remarks Be sure to note that this function always creates a new linked
  * list.
  */
-POSITION* AddHead(void* pvData);
-
-/**
- * @brief Adds a new member to the linked list.
- * @param ppListHead Address of the address of a POSITION structure that
- * denotes the location of the list's head.
- * @param pvData Address of the data to place in the new linked list node.
- * @returns TRUE if the add operation succeeded; FALSE otherwise.
- */
-BOOL AddTail(POSITION** ppListHead, void* pvData);
+POSITION* CreateNewList(void* pvData);
 
 /**
  * @brief Removes all the elements from the list and frees the data

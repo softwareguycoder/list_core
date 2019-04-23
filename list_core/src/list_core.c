@@ -21,50 +21,6 @@ void DisplayError(const char *pszMessage) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// AddHead function
-
-POSITION* AddHead(void *pvData) {
-	if (pvData == NULL) {
-		DisplayError(INVALID_LIST_DATA);
-	}
-
-	/* Create a new node to serve as the new head. */
-	POSITION* pListHead = (POSITION*) calloc(1, sizeof(POSITION));
-	if (pListHead == NULL) {
-		DisplayError(FAILED_ALLOC_HEAD);
-	}
-
-	/* Create a new root structure to bear information about the
-	 * head and tail. */
-	ROOT* pListRoot = (ROOT*) calloc(1, sizeof(ROOT));
-	if (pListRoot == NULL) {
-		DisplayError(FAILED_ALLOC_ROOT);
-	}
-
-	/* Set the root structure to point to the newly-created node as
-	 * both the head and the tail (since there is just one node in the
-	 * list right now). */
-	pListRoot->pHead = pListHead;
-	pListRoot->pTail = pListHead;
-
-	/* Set the pListRoot of the newly-created head element to reference
-	 * back to the root. */
-	pListHead->pListRoot = pListRoot;
-
-	/* Since this is the first element, there is nothing for the pNext and
-	 * pPrev pointers to reference right now. */
-	pListHead->pNext = NULL;
-	pListHead->pPrev = NULL;
-
-	/* Initialize the pvData member of the new node with the data
-	 * pointer passed to this function. */
-	pListHead->pvData = pvData;
-
-	/* Return the address of the newly-created node. */
-	return pListHead;
-}
-
-///////////////////////////////////////////////////////////////////////////////
 // AddTail function
 
 BOOL AddTail(POSITION** ppListHead, void *pvData) {
@@ -105,6 +61,50 @@ BOOL AddTail(POSITION** ppListHead, void *pvData) {
 
 	/* Return success. */
 	return TRUE;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// CreateNewList function
+
+POSITION* CreateNewList(void *pvData) {
+	if (pvData == NULL) {
+		DisplayError(INVALID_LIST_DATA);
+	}
+
+	/* Create a new node to serve as the new head. */
+	POSITION* pListHead = (POSITION*) calloc(1, sizeof(POSITION));
+	if (pListHead == NULL) {
+		DisplayError(FAILED_ALLOC_HEAD);
+	}
+
+	/* Create a new root structure to bear information about the
+	 * head and tail. */
+	ROOT* pListRoot = (ROOT*) calloc(1, sizeof(ROOT));
+	if (pListRoot == NULL) {
+		DisplayError(FAILED_ALLOC_ROOT);
+	}
+
+	/* Set the root structure to point to the newly-created node as
+	 * both the head and the tail (since there is just one node in the
+	 * list right now). */
+	pListRoot->pHead = pListHead;
+	pListRoot->pTail = pListHead;
+
+	/* Set the pListRoot of the newly-created head element to reference
+	 * back to the root. */
+	pListHead->pListRoot = pListRoot;
+
+	/* Since this is the first element, there is nothing for the pNext and
+	 * pPrev pointers to reference right now. */
+	pListHead->pNext = NULL;
+	pListHead->pPrev = NULL;
+
+	/* Initialize the pvData member of the new node with the data
+	 * pointer passed to this function. */
+	pListHead->pvData = pvData;
+
+	/* Return the address of the newly-created node. */
+	return pListHead;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
