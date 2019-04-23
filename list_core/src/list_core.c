@@ -161,7 +161,7 @@ void DestroyList(POSITION** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc) {
 ///////////////////////////////////////////////////////////////////////////////
 // FindElement function
 
-/*
+/**
  * The compare functiopn (LPCOMPARE_ROUTINE) is user implemented.
  * It takes in two parameters:
  *    1. void* of value 1
