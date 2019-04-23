@@ -23,7 +23,7 @@
 //
 // void PrintTheData(void* pvElement) {
 //     int nData = *(int*)pvElement;
-//	   printf("%d\n");
+//       printf("%d\n");
 // }
 //
 // int main(int argc, char *argv[]) {
@@ -31,7 +31,7 @@
 //     int highestScore = 10;
 //     POSITION* head = CreateNewList(&highestScore);
 //
-//	   int aliceScore = 4;
+//       int aliceScore = 4;
 //     AddTail(&head, &aliceScore);
 //
 //     int bobScore = 3;
@@ -150,7 +150,7 @@ void DestroyList(POSITION** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc);
  * been reached.
  */
 POSITION* FindElement(POSITION** ppListHead, void *pSearchKey,
-		LPCOMPARE_ROUTINE lpfnCompare);
+        LPCOMPARE_ROUTINE lpfnCompare);
 
 /**
  * @brief Executes an action for each member of a non-empty list.
