@@ -135,7 +135,7 @@ POSITION* CreateNewList(void *pvData) {
 ///////////////////////////////////////////////////////////////////////////////
 // DestroyList function
 
-void DestroyList(POSITION ** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc) {
+void DestroyList(POSITION** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc) {
 	if (lpfnDeallocFunc == NULL) {
 		DisplayError(NO_DEALLOC_ROUTINE_SPECIFIED);
 	}
