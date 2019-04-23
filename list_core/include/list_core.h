@@ -57,8 +57,8 @@ typedef void (*LPDEALLOC_ROUTINE)(void*);
 BOOL AddTail(POSITION** ppListHead, void* pvData);
 
 /**
- * @brief Creates a linked list and makes the first node refer to the data
- * specified.
+ * @brief Creates a new linked list and makes the first node refer to
+ * the data specified.
  * @param pvData Address of the data that the first node should refer to.
  * @returns Address of a POSITION structure that locates where the new
  * node is in the list.
