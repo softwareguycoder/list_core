@@ -36,14 +36,8 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-#include <signal.h>
 
-/**
- * @brief Custom data type that makes it more fluent to handle Boolean values.
- */
-typedef enum {
-	FALSE, TRUE
-} BOOL;
+#include <../../common_core/common_core/include/common_core.h>
 
 #include "list_core_symbols.h"
 
