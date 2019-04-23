@@ -168,7 +168,7 @@ void DestroyList(POSITION ** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc) {
  *
  *    The function return 1 on equals, 0 otherwise.
  *
- * find_member traverses the linked list starting at the head
+ * FindElement traverses the linked list starting at the head
  * and finds the first element of interest by using LPCOMPARE_ROUTINE.
  *
  * It takes the address of the value its trying to find a a function
@@ -177,7 +177,7 @@ void DestroyList(POSITION ** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc) {
  * linked list structure definition as the second argument to the
  * function pointed to by lpfnCompare.
  *
- * On success find_member returns a pointer to the list_entry of interest.
+ * On success FindElement returns a pointer to the list_entry of interest.
  * On failure it returns NULL.
  */
 
