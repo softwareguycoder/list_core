@@ -33,6 +33,12 @@
     "Failed to allocate memory for list head node.\n"
 #endif //FAILED_ALLOC_ROOT
 
+#ifndef FAILED_OPERATION_NULL_HEAD
+#define FAILED_OPERATION_NULL_HEAD \
+    "Can't carry out the desired operation for each list element.\n" \
+	"The head element has not been initialized.\n"
+#endif //FAILED_OPERATION_NULL_HEAD
+
 #ifndef FAILED_SEARCH_NULL_COMPARER
 #define FAILED_SEARCH_NULL_COMPARER \
     "Can't search for desired list element.  A comparer routine is needed.\n"
