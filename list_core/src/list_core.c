@@ -78,7 +78,7 @@ ROOT* CreateRoot() {
  */
 void DisplayError(const char *pszMessage) {
 	// can't display a blank message
-	if (pszMessage == NULL || pszMessage[0] == '\0') {
+	if (IsNullOrWhiteSpace(pszMessage)) {
 		return;
 	}
 	fprintf(stderr, "%s", pszMessage);
