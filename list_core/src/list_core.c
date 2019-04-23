@@ -1,4 +1,5 @@
-// list_core.c - Provides implementations for the API function that allow access to a linked list.
+// list_core.c - Provides implementations for the API functions that allow
+// access to a linked list.
 //
 
 #include "stdafx.h"
