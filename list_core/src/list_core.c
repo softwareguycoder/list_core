@@ -141,7 +141,7 @@ void DestroyList(POSITION** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc) {
 	}
 
 	if (GetCount(ppListHead) == 0) {
-		return;			// Nothing to do since the list has no elements in it
+		return;		// Nothing to do since the list has no elements in it
 	}
 
 	POSITION *pos = GetHeadPosition(ppListHead);
@@ -150,8 +150,9 @@ void DestroyList(POSITION** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc) {
 	}
 
 	/* First, deallocate all the data by iterating over the
-	 list and then calling the deallocation routine. Then, remove the tail of
-	 the list.  We work our way back and remove elements tail first. */
+	 list and then calling the deallocation routine. Then,
+	 remove the tail of the list.  We work our way back and
+	 remove elements tail first. */
 	do {
 		lpfnDeallocFunc(pos->pvData);
 	} while ((pos = RemoveTail(ppListHead)) != NULL);
