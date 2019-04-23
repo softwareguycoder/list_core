@@ -5,11 +5,6 @@
 #ifndef __LIST_CORE_SYMBOLS_H__
 #define __LIST_CORE_SYMBOLS_H__
 
-#ifndef ADD_ELEMENT_HEAD_NULL
-#define ADD_ELEMENT_HEAD_NULL \
-    "Adding list member has failed.\nlist head is NULL\n"
-#endif //ADD_ELEMENT_HEAD_NULL
-
 #ifndef ERROR_STARTING_MEMBER_NULL
 #define ERROR_STARTING_MEMBER_NULL \
     "Must specify starting member.\n"
@@ -62,6 +57,15 @@
 #define INVALID_LIST_DATA \
     "The pointer for the data to add to the linked list is an invalid value.\n"
 #endif //INVALID_LIST_DATA
+
+/**
+ * @brief Error message that is displayed when the head of the list cannot
+ * be accessed.
+ */
+#ifndef LIST_HEAD_INVALID
+#define LIST_HEAD_INVALID \
+    "list head cannot be accessed.\n"
+#endif //LIST_HEAD_INVALID
 
 /**
  * @brief Error message that is displayed when a function is given a NULL

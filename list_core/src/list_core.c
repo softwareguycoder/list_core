@@ -25,14 +25,48 @@
 #include "position.h"
 #include "root.h"
 
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 // Internal functions
 
-////////////////////////////////////////////////////////////////////////////////
-// DisplayError function - Only utilized by this library to write an error
-// message out to stderr and then exit the software with a code of EXIT_FAILURE
-//
+///////////////////////////////////////////////////////////////////////////////
+// CreateNode function
 
+/**
+ * @brief Allocates memory for a new instance of a POSITION structure that
+ * represents a node in the linked list.
+ * @remarks If this function fails to allocate the needed memory, it will
+ * write a message to this effect to STDERR and then cause the calling
+ * program to exit.
+ */
+POSITION* CreateNode() {
+	/* Create a new node */
+	POSITION* pNewNode = (POSITION*) calloc(1, sizeof(POSITION));
+	if (pNewNode == NULL) {
+		DisplayError(FAILED_ALLOC_NEW_NODE);
+	}
+	return pNewNode;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// CreateRoot
+ROOT* CreateRoot() {
+	/* Create a new root structure to bear information about the
+	 * head and tail. */
+	ROOT* pListRoot = (ROOT*) calloc(1, sizeof(ROOT));
+	if (pListRoot == NULL) {
+		DisplayError(FAILED_ALLOC_ROOT);
+	}
+	return pListRoot;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// DisplayError function
+
+/**
+ * @brief Prints the value of pszMessage to STDERR and exits the software.
+ * @param pszMessage Message to be sent to STDERR.
+ */
 void DisplayError(const char *pszMessage) {
     // can't display a blank message
     if (pszMessage == NULL || pszMessage[0] == '\0') {
@@ -43,24 +77,50 @@ void DisplayError(const char *pszMessage) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// ValidateData function
+
+/**
+ * @brief Checks that valid data (i.e., a non-NULL pointer) was supplied.
+ * @param pvData Pointer to be tested.
+ * @remarks If this function detects that its argument is a NULL pointer, it
+ * writes an error message to STDERR and exits the calling program.
+ */
+void ValidateData(void* pvData) {
+	if (pvData == NULL) {
+		DisplayError(INVALID_LIST_DATA);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// ValidateListHead function
+
+/**
+ * @brief Examines the POSITIOn reference passed and ensures it is a valid
+ * refrence to the head of the linked list.
+ * @param ppListHead Address of a pointer to a POSITION structure that refers
+ * to the element that is at the head of the list.
+ * @remarks This function checks its argument for being a NULL pointer and
+ * that it refers to a valid address.  If this is not the case, this function
+ * prints an error message to the screen and quits the calling program.
+ */
+void ValidateListHead(POSITION** ppListHead) {
+	if (ppListHead == NULL || (*ppListHead) == NULL) {
+		DisplayError(LIST_HEAD_INVALID);
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // Functions exposed to callers
 
 ///////////////////////////////////////////////////////////////////////////////
 // AddTail function
 
 BOOL AddTail(POSITION** ppListHead, void *pvData) {
-    if (pvData == NULL) {
-        DisplayError(INVALID_LIST_DATA);
-    }
+	ValidateData(pvData);
 
-    if (ppListHead == NULL || (*ppListHead) == NULL) {
-        DisplayError(ADD_ELEMENT_HEAD_NULL);
-    }
+	ValidateListHead(ppListHead);
 
-    POSITION* pNewTail = (POSITION*) calloc(1, sizeof(POSITION));
-    if (pNewTail == NULL) {
-        DisplayError(FAILED_ALLOC_NEW_NODE);
-    }
+	POSITION* pNewTail = CreateNode();
 
     /* Set the pListRoot member of the new node to point at
      * the address referenced by the list head */
@@ -92,22 +152,15 @@ BOOL AddTail(POSITION** ppListHead, void *pvData) {
 // CreateNewList function
 
 POSITION* CreateNewList(void *pvData) {
-    if (pvData == NULL) {
-        DisplayError(INVALID_LIST_DATA);
-    }
+	ValidateData(pvData);
 
-    /* Create a new node to serve as the new head. */
-    POSITION* pListHead = (POSITION*) calloc(1, sizeof(POSITION));
-    if (pListHead == NULL) {
-        DisplayError(FAILED_ALLOC_HEAD);
-    }
+    /* Create a new node to serve as the new head. The CreateNode
+     * function causes the program to exit if it fails. */
+	POSITION* pListHead = CreateNode();
 
     /* Create a new root structure to bear information about the
      * head and tail. */
-    ROOT* pListRoot = (ROOT*) calloc(1, sizeof(ROOT));
-    if (pListRoot == NULL) {
-        DisplayError(FAILED_ALLOC_ROOT);
-    }
+	ROOT* pListRoot = CreateRoot();
 
     /* Set the root structure to point to the newly-created node as
      * both the head and the tail (since there is just one node in the
@@ -136,6 +189,8 @@ POSITION* CreateNewList(void *pvData) {
 // DestroyList function
 
 void DestroyList(POSITION** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc) {
+	ValidateListHead(ppListHead);
+
     if (lpfnDeallocFunc == NULL) {
         DisplayError(NO_DEALLOC_ROUTINE_SPECIFIED);
     }
