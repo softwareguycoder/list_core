@@ -1,9 +1,40 @@
-/*
- * list_core.h
- *
- *  Created on: Apr 18, 2019
- *      Author: bhart
- */
+// list_core.h - Defines the user interface for the list_core library.
+// This libary provides the functionality of a doubly-linked list.  A
+// typical use case scenario is as follows:
+//
+//
+// #include "list_core.h"
+//
+// void PrintTheData(void* pvElement) {
+//     int nData = *(int*)pvElement;
+//	   printf("%d\n");
+// }
+//
+// int main(int argc, char *argv[]) {
+//
+//     int highestScore = 10;
+//     POSITION* head = CreateNewList(&highestScore);
+//
+//	   int aliceScore = 4;
+//     AddTail(&head, &aliceScore);
+//
+//     int bobScore = 3;
+//     AddTail(&head, &bobScore);
+//
+//     /* ... */
+//
+//    ForEach(&head, PrintTheData);
+//
+//    DestroyList(&head);
+//
+//    return 0;
+// }
+//
+// Program output:
+// 10
+// 4
+// 3
+//
 
 #ifndef __LIST_CORE_H__
 #define __LIST_CORE_H__
