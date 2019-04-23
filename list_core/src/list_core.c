@@ -48,7 +48,14 @@ POSITION* CreateNode() {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// CreateRoot
+// CreateRoot function
+
+/**
+ * @brief Creates a new instance in memory of the ROOT structure
+ * and returns the address of this instance.
+ * @remarks If this function fails to allocate the needed memory, then the
+ * function forces the calling program to terminate.
+ */
 ROOT* CreateRoot() {
 	/* Create a new root structure to bear information about the
 	 * head and tail. */
