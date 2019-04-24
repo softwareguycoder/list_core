@@ -101,21 +101,19 @@ void ValidateData(void* pvData) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// ValidateListHead function
+// IsListHeadValid function
 
 /**
- * @brief Examines the POSITIOn reference passed and ensures it is a valid
- * refrence to the head of the linked list.
+ * @brief Examines the POSITIOn reference passed and returns a value that
+ * indicates whether it is a valid refrence to the head of the linked list.
  * @param ppListHead Address of a pointer to a POSITION structure that refers
  * to the element that is at the head of the list.
+ * @returns TRUE if the list head reference is valid; FALSE otherwise.
  * @remarks This function checks its argument for being a NULL pointer and
  * that it refers to a valid address.  If this is not the case, this function
- * prints an error message to the screen and quits the calling program.
- */
-void ValidateListHead(POSITION** ppListHead) {
-	if (ppListHead == NULL || (*ppListHead) == NULL) {
-		DisplayError(LIST_HEAD_INVALID);
-	}
+ * returns FALSE.  */
+BOOL IsListHeadValid(POSITION** ppListHead) {
+	return ppListHead != NULL && (*ppListHead) != NULL;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -143,7 +141,9 @@ void ValidateSearchKey(void* pSearchKey) {
 BOOL AddTail(POSITION** ppListHead, void *pvData) {
 	ValidateData(pvData);
 
-	ValidateListHead(ppListHead);
+	if (!IsListHeadValid(ppListHead)) {
+	    return FALSE;
+	}
 
 	POSITION* pNewTail = CreateNode();
 
@@ -214,7 +214,9 @@ POSITION* CreateNewList(void *pvData) {
 // DestroyList function
 
 void DestroyList(POSITION** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc) {
-	ValidateListHead(ppListHead);
+	if (!IsListHeadValid(ppListHead)){
+	    return;
+	}
 
 	if (lpfnDeallocFunc == NULL) {
 		DisplayError(NO_DEALLOC_ROUTINE_SPECIFIED);
@@ -264,7 +266,9 @@ void DestroyList(POSITION** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc) {
 
 POSITION* FindElement(POSITION** ppListHead, void *pSearchKey,
 		LPCOMPARE_ROUTINE lpfnCompare) {
-	ValidateListHead(ppListHead);
+	if (!IsListHeadValid(ppListHead)) {
+	    return FALSE;
+	}
 
 	ValidateSearchKey(pSearchKey);
 
@@ -296,7 +300,9 @@ POSITION* FindElement(POSITION** ppListHead, void *pSearchKey,
 // ForEach function
 
 void ForEach(POSITION **ppListHead, LPACTION_ROUTINE lpfnForEachRoutine) {
-	ValidateListHead(ppListHead);
+	if (!IsListHeadValid(ppListHead)) {
+	    return;
+	}
 
 	POSITION *pos = GetHeadPosition(ppListHead);
 	if (pos == NULL) {
@@ -386,7 +392,9 @@ POSITION* GetTailPosition(POSITION** ppMember) {
 
 BOOL RemoveElement(POSITION** ppListHead, void *pSearchKey,
 		LPCOMPARE_ROUTINE lpfnSearch) {
-	ValidateListHead(ppListHead);
+	if (!IsListHeadValid(ppListHead)) {
+	    return FALSE;
+	}
 
 	ValidateSearchKey(pSearchKey);
 
