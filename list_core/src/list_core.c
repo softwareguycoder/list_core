@@ -266,8 +266,12 @@ void DestroyList(POSITION** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc) {
 
 POSITION* FindElement(POSITION** ppListHead, void *pSearchKey,
 		LPCOMPARE_ROUTINE lpfnCompare) {
+    if (GetCount(ppListHead) == 0) {
+        return NULL;
+    }
+
 	if (!IsListHeadValid(ppListHead)) {
-	    return FALSE;
+	    return NULL;
 	}
 
 	ValidateSearchKey(pSearchKey);
