@@ -37,8 +37,15 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 
+#include "list_core_symbols.h"
+
 #include <../../common_core/common_core/include/common_core.h>
 
-#include "list_core_symbols.h"
+/**
+ * @brief Boolean value data type.
+ */
+typedef enum {
+	FALSE, TRUE
+} BOOL;
 
 #endif //__STDAFX_H__

@@ -55,6 +55,14 @@
 #ifndef __LIST_CORE_H__
 #define __LIST_CORE_H__
 
+#ifndef FALSE
+#define FALSE 0
+#endif //FALSE
+
+#ifndef TRUE
+#define TRUE 1
+#endif //TRUE
+
 #include "root.h"
 #include "position.h"
 
