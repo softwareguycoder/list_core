@@ -39,13 +39,7 @@
 
 #include "list_core_symbols.h"
 
+#include <../../api_core/api_core/include/api_core.h>
 #include <../../common_core/common_core/include/common_core.h>
-
-/**
- * @brief Boolean value data type.
- */
-typedef enum {
-	FALSE, TRUE
-} BOOL;
 
 #endif //__STDAFX_H__
