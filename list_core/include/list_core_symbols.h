@@ -19,6 +19,11 @@
     "Failed to allocate memory for list head node.\n"
 #endif //FAILED_ALLOC_HEAD
 
+#ifndef FAILED_ALLOC_LIST_ROOT
+#define FAILED_ALLOC_LIST_ROOT \
+	"Failed to allocate memory for the list root structure.\n"
+#endif //FAILED_ALLOC_LIST_ROOT
+
 #ifndef FAILED_ALLOC_NEW_NODE
 #define FAILED_ALLOC_NEW_NODE \
     "Failed to allocate memory for a new linked list node.\n"

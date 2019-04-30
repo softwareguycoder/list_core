@@ -37,17 +37,28 @@ void DisplayError(const char *pszMessage);
 /**
  * @brief Allocates memory for a new instance of a POSITION structure that
  * represents a node in the linked list.
+ * @param ppNewNode Address of a pointer to a POSITION instance that will be
+ * filled with the address of the newly-allocated instance.
  * @remarks If this function fails to allocate the needed memory, it will
  * write a message to this effect to STDERR and then cause the calling
  * program to exit.
  */
-POSITION* CreateNode() {
+void CreateNode(POSITION** ppNewNode) {
+	if (ppNewNode == NULL) {
+		return;
+	}
+
 	/* Create a new node */
-	POSITION* pNewNode = (POSITION*) calloc(1, sizeof(POSITION));
+	POSITION* pNewNode = NULL;
+
+	pNewNode = (POSITION*) malloc(1*sizeof(POSITION));
 	if (pNewNode == NULL) {
 		DisplayError(FAILED_ALLOC_NEW_NODE);
 	}
-	return pNewNode;
+
+	memset(pNewNode, 0, sizeof(POSITION));
+
+	*ppNewNode = pNewNode;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -56,17 +67,28 @@ POSITION* CreateNode() {
 /**
  * @brief Creates a new instance in memory of the ROOT structure
  * and returns the address of this instance.
+ * @param ppListRoot Address of a pointer variable whose value is to be
+ * filled with the address of the new ROOT structure instance.
  * @remarks If this function fails to allocate the needed memory, then the
  * function forces the calling program to terminate.
  */
-ROOT* CreateRoot() {
+void CreateRoot(ROOT** ppListRoot) {
+	if (ppListRoot == NULL) {
+		// Need a place to store the answer
+		return;
+	}
+
 	/* Create a new root structure to bear information about the
 	 * head and tail. */
-	ROOT* pListRoot = (ROOT*) calloc(1, sizeof(ROOT));
+	ROOT* pListRoot = NULL;
+	pListRoot = (ROOT*) malloc(1*sizeof(ROOT));
 	if (pListRoot == NULL) {
 		DisplayError(FAILED_ALLOC_ROOT);
 	}
-	return pListRoot;
+
+	memset(pListRoot, 0, sizeof(ROOT));
+
+	*ppListRoot = pListRoot;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -90,12 +112,13 @@ void DisplayError(const char *pszMessage) {
 
 /**
  * @brief Checks that valid data (i.e., a non-NULL pointer) was supplied.
- * @param pvData Pointer to be tested.
- * @remarks If this function detects that its argument is a NULL pointer, it
+ * @param ppvData Address of the pointer to be tested.
+ * @remarks If this function detects that its argument is a NULL pointer,
+ * or if its argument is the address of a NULL pointer, then it
  * writes an error message to STDERR and exits the calling program.
  */
-void ValidateData(void* pvData) {
-	if (pvData == NULL) {
+void ValidateData(void** ppvData) {
+	if (ppvData == NULL || *ppvData == NULL) {
 		DisplayError(INVALID_LIST_DATA);
 	}
 }
@@ -139,13 +162,15 @@ void ValidateSearchKey(void* pSearchKey) {
 // AddTail function
 
 BOOL AddTail(POSITION** ppListHead, void *pvData) {
-	ValidateData(pvData);
+	ValidateData(&pvData);
 
 	if (!IsListHeadValid(ppListHead)) {
 	    return FALSE;
 	}
 
-	POSITION* pNewTail = CreateNode();
+	POSITION* pNewTail = NULL;
+
+	CreateNode(&pNewTail);
 
 	/* Set the pListRoot member of the new node to point at
 	 * the address referenced by the list head */
@@ -176,38 +201,39 @@ BOOL AddTail(POSITION** ppListHead, void *pvData) {
 ///////////////////////////////////////////////////////////////////////////////
 // CreateNewList function
 
-POSITION* CreateNewList(void *pvData) {
-	ValidateData(pvData);
+void CreateNewList(POSITION** ppNewHead, void** ppvData) {
+	ValidateData(ppvData);
 
-	/* Create a new node to serve as the new head. The CreateNode
-	 * function causes the program to exit if it fails. */
-	POSITION* pListHead = CreateNode();
+	CreateNode(ppNewHead);
 
 	/* Create a new root structure to bear information about the
 	 * head and tail. */
-	ROOT* pListRoot = CreateRoot();
+	ROOT* pListRoot = NULL;
+	CreateRoot(&pListRoot);
+
+	if (pListRoot == NULL) {
+		fprintf(stderr, FAILED_ALLOC_LIST_ROOT);
+		exit(ERROR);
+	}
 
 	/* Set the root structure to point to the newly-created node as
 	 * both the head and the tail (since there is just one node in the
 	 * list right now). */
-	pListRoot->pHead = pListHead;
-	pListRoot->pTail = pListHead;
+	pListRoot->pHead = (*ppNewHead);
+	pListRoot->pTail = (*ppNewHead);
 
 	/* Set the pListRoot of the newly-created head element to reference
 	 * back to the root. */
-	pListHead->pListRoot = pListRoot;
+	(*ppNewHead)->pListRoot = pListRoot;
 
 	/* Since this is the first element, there is nothing for the pNext and
 	 * pPrev pointers to reference right now. */
-	pListHead->pNext = NULL;
-	pListHead->pPrev = NULL;
+	(*ppNewHead)->pNext = NULL;
+	(*ppNewHead)->pPrev = NULL;
 
 	/* Initialize the pvData member of the new node with the data
 	 * pointer passed to this function. */
-	pListHead->pvData = pvData;
-
-	/* Return the address of the newly-created node. */
-	return pListHead;
+	(*ppNewHead)->pvData = *ppvData;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
