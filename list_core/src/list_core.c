@@ -234,9 +234,12 @@ void DestroyList(POSITION** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc) {
 	/* First, deallocate all the data by iterating over the
 	 list and then calling the deallocation routine. Then,
 	 remove the tail of the list.  We work our way back and
-	 remove elements tail first. */
+	 remove elements tail first. We need for the value of pvData
+	 to be updated, so that it is not accidentally re-used.  Therefore,
+	 we pass the address of the pvData pointer to the deallocation
+	 routine. */
 	do {
-		lpfnDeallocFunc(pos->pvData);
+		lpfnDeallocFunc(&(pos->pvData));
 	} while ((pos = RemoveTail(ppListHead)) != NULL);
 }
 

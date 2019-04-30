@@ -92,12 +92,12 @@ typedef BOOL (*LPCOMPARE_ROUTINE)(void*, void*);
 /**
  * @brief Callback to be used to deallocate the storage occupied by the
  * current element of the list.
- * @param pData Pointer to the memory storage occupied by the current list
- * element.
+ * @param ppData Address of a pointer to the memory storage occupied by
+ * the current list element's data.
  * @remarks Provide the address of a function matching the signature of this
  * routine to the DestroyList function.  The function referenced will be called
  * once for each element in the list. */
-typedef void (*LPDEALLOC_ROUTINE)(void*);
+typedef void (*LPDEALLOC_ROUTINE)(void** ppData);
 
 ///////////////////////////////////////////////////////////////////////////////
 // Functions
