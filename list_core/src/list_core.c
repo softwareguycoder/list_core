@@ -48,17 +48,16 @@ void CreateNode(POSITION** ppNewNode) {
 		return;
 	}
 
-	/* Create a new node */
-	POSITION* pNewNode = NULL;
+	if ((*ppNewNode) != NULL) {
+		return;
+	}
 
-	pNewNode = (POSITION*) malloc(1*sizeof(POSITION));
-	if (pNewNode == NULL) {
+	*ppNewNode = (POSITION*) malloc(1*sizeof(POSITION));
+	if ((*ppNewNode) == NULL) {
 		DisplayError(FAILED_ALLOC_NEW_NODE);
 	}
 
-	memset(pNewNode, 0, sizeof(POSITION));
-
-	*ppNewNode = pNewNode;
+	memset(*ppNewNode, 0, sizeof(POSITION));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
