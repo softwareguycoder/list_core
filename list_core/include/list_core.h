@@ -63,8 +63,9 @@
 #define TRUE 1
 #endif //TRUE
 
-#include "root.h"
-#include "position.h"
+typedef struct _tagROOT ROOT;
+
+typedef struct _tagPOSITION POSITION, *LPPOSITION, **LPPPOSITION;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Callback signatures

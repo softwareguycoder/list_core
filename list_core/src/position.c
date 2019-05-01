@@ -32,44 +32,8 @@ void CreatePosition(LPPPOSITION lppNewPosition) {
 	*lppNewPosition = lpResult;
 }
 
-void GetData(LPPOSITION lpCurrentPosition,
-    void** ppvData) {
-  if (lpCurrentPosition == NULL){
-    return; // required parameter
-  }
-
-  if (ppvData == NULL) {
-    return; // required parameter
-  }
-
-  *ppvData = lpCurrentPosition->pvData;
-}
-
-void GetNext(LPPOSITION lpCurrentPosition,
-    LPPPOSITION lppNext) {
-  if (lpCurrentPosition == NULL){
-    return; // required parameter
-  }
-
-  if (lppNext == NULL) {
-    return; // required parameter
-  }
-
-  *lppNext = lpCurrentPosition->pNext;
-}
-
-void GetPrev(LPPOSITION lpCurrentPosition,
-    LPPPOSITION lppPrev) {
-  if (lpCurrentPosition == NULL){
-    return; // required parameter
-  }
-
-  if (lppPrev == NULL) {
-    return; // required parameter
-  }
-
-  *lppPrev = lpCurrentPosition->pPrev;
-}
+//////////////////////////////////////////////////////////////////////////////
+// DestroyPosition function
 
 void DestroyPosition(LPPPOSITION lppPosition) {
   if (lppPosition == NULL){
@@ -90,8 +54,56 @@ void DestroyPosition(LPPPOSITION lppPosition) {
   FreeBuffer((void**)lppPosition);
 }
 
-///////////////////////////////////////////////////////////////////////////////
-// InitializePosition
+//////////////////////////////////////////////////////////////////////////////
+// GetData function
+
+void GetData(LPPOSITION lpCurrentPosition,
+    void** ppvData) {
+  if (lpCurrentPosition == NULL){
+    return; // required parameter
+  }
+
+  if (ppvData == NULL) {
+    return; // required parameter
+  }
+
+  *ppvData = lpCurrentPosition->pvData;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// GetNext function
+
+void GetNext(LPPOSITION lpCurrentPosition,
+    LPPPOSITION lppNext) {
+  if (lpCurrentPosition == NULL){
+    return; // required parameter
+  }
+
+  if (lppNext == NULL) {
+    return; // required parameter
+  }
+
+  *lppNext = lpCurrentPosition->pNext;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// GetPrev function
+
+void GetPrev(LPPOSITION lpCurrentPosition,
+    LPPPOSITION lppPrev) {
+  if (lpCurrentPosition == NULL){
+    return; // required parameter
+  }
+
+  if (lppPrev == NULL) {
+    return; // required parameter
+  }
+
+  *lppPrev = lpCurrentPosition->pPrev;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// InitializePosition function
 
 void InitializePosition(LPPOSITION lpPosition, LPPOSITION lpPrev,
 		LPPOSITION lpNext, void* pvData) {
@@ -104,6 +116,9 @@ void InitializePosition(LPPOSITION lpPosition, LPPOSITION lpPrev,
 	lpPosition->pvData = pvData;
 }
 
+//////////////////////////////////////////////////////////////////////////////
+// SetData function
+
 void SetData(LPPOSITION lpCurrentPosition,
     void* pvData) {
   if (lpCurrentPosition == NULL) {
@@ -113,6 +128,9 @@ void SetData(LPPOSITION lpCurrentPosition,
   lpCurrentPosition->pvData = pvData;
 }
 
+//////////////////////////////////////////////////////////////////////////////
+// SetNext function
+
 void SetNext(LPPOSITION lpCurrentPosition,
     LPPOSITION lpNextPosition) {
   if (lpCurrentPosition == NULL) {
@@ -121,6 +139,9 @@ void SetNext(LPPOSITION lpCurrentPosition,
 
   lpCurrentPosition->pNext = lpNextPosition;
 }
+
+//////////////////////////////////////////////////////////////////////////////
+// SetPrev function
 
 void SetPrev(LPPOSITION lpCurrentPosition,
     LPPOSITION lpPrevPosition) {
