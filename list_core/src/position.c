@@ -155,12 +155,6 @@ BOOL IsTailPosition(LPPOSITION lpPosition) {
   return lpPosition->pNext == NULL;
 }
 
-  /* if pPrev is NULL, then it's obvious that this element is the head
-   * of whatever linked list it's in, or it's the only element in the list,
-   * period. */
-  return lpPosition->pPrev == NULL;
-}
-
 //////////////////////////////////////////////////////////////////////////////
 // SetData function
 
