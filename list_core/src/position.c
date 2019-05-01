@@ -36,12 +36,8 @@ void CreatePosition(LPPPOSITION lppNewPosition) {
 // DestroyPosition function
 
 void DestroyPosition(LPPPOSITION lppPosition) {
-  if (lppPosition == NULL){
+  if (lppPosition == NULL || *lppPosition == NULL){
     return; // Required parameter
-  }
-
-  if ((*lppPosition) == NULL) {
-    return;   // Required parameter
   }
 
   // Blank out all the pointer members of the POSITION struct so
