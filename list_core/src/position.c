@@ -71,6 +71,25 @@ void GetPrev(LPPOSITION lpCurrentPosition,
   *lppPrev = lpCurrentPosition->pPrev;
 }
 
+void DestroyPosition(LPPPOSITION lppPosition) {
+  if (lppPosition == NULL){
+    return; // Required parameter
+  }
+
+  if ((*lppPosition) == NULL) {
+    return;   // Required parameter
+  }
+
+  // Blank out all the pointer members of the POSITION struct so
+  // that prev, next nodes and data are no longer referred to (it may
+  // even be the case that pointer member variables may still be set to
+  // addresses of free'd memory; when we free() the structure the OS will
+  // try to re-free the memory which we do not want
+  memset((*lppPosition), 0, sizeof(POSITION));
+
+  FreeBuffer((void**)lppPosition);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // InitializePosition
 

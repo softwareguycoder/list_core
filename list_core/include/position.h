@@ -43,6 +43,15 @@ typedef struct _tagPOSITION {
 void CreatePosition(LPPPOSITION lppNewPosition);
 
 /**
+ * @name DestroyPosition
+ * @brief Clears the values of a POSITION instance's pointer members and then
+ * removes the structure instance from memory.
+ * @param lppPosition Address of a pointer to an instance of POSITION.  This
+ * pointer value will be reset to NULL by this function.
+ */
+void DestroyPosition(LPPPOSITION lppPosition);
+
+/**
  * @name GetData
  * @brief Gets the address of the data referenced by this node.
  * @param lpCurrentPosition Address of a POSITION instance denoting the node
