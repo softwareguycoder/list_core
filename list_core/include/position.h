@@ -100,6 +100,34 @@ void InitializePosition(LPPOSITION lpPosition, LPPOSITION lpPrev,
     LPPOSITION lpNext, void* pvData);
 
 /**
+ * @name IsHeadPosition
+ * @param lpPosition Address of a POSITION structure instance that represents
+ * a node in the linked list.
+ * @return TRUE if the element lpPosition is the head of the linked list (also
+ * TRUE if lpPosition is the only member of the list); FALSE otherwise.
+ */
+BOOL IsHeadPosition(LPPOSITION lpPosition);
+
+/**
+ * @name IsSoleElement
+ * @param lpPosition Address of a POSITION structure instance that represents
+ * a node in the linked list
+ * @return TRUE if the element lpPosition is the only element in the list.
+ * @remarks An element is defined to be the only element in a linked list if
+ * both the pPrev and pNext pointers have the value of NULL.
+ */
+BOOL IsSoleElement(LPPOSITION lpPosition);
+
+/**
+ * @name IsTailPosition
+ * @param lpPosition Address of a POSITION structure instance that represents
+ * a node in the linked list.
+ * @return TRUE if the node lpPosition is the tail of the linked list (also
+ * TRUE if the node is the only member of the list); FALSE otherwise.
+ */
+BOOL IsTailPosition(LPPOSITION lpPosition);
+
+/**
  * @name SetData
  * @brief
  * @param lpCurrentPosition

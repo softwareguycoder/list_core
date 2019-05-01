@@ -113,6 +113,55 @@ void InitializePosition(LPPOSITION lpPosition, LPPOSITION lpPrev,
 }
 
 //////////////////////////////////////////////////////////////////////////////
+// IsHeadPosition function
+
+BOOL IsHeadPosition(LPPOSITION lpElement) {
+  if (lpElement == NULL){
+    return FALSE;   // required parameter
+  }
+
+  /* if pPrev is NULL, then it's obvious that this element is the head
+   * of whatever linked list it's in, or it's the only element in the list,
+   * period. */
+  return lpElement->pPrev == NULL;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// IsSoleElement function
+
+BOOL IsSoleElement(LPPOSITION lpPosition) {
+  if (lpPosition == NULL){
+    return FALSE;   // required parameter
+  }
+
+  /* if pPrev is NULL AND pNext is NULL, this element is the only
+   * element in its linked list, period. */
+  return lpPosition->pPrev == NULL
+      && lpPosition->pNext == NULL;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// IsTailPosition function
+
+BOOL IsTailPosition(LPPOSITION lpPosition) {
+  if (lpPosition == NULL){
+    return FALSE; // required parameter
+  }
+
+  /* if pNext is NULL, then it's obvious that this element is the tail
+   * of whatever linked list it's in, or it's the only element in the list,
+   * period. Call IsSoleElement to determine whether it's the sole element
+   * in the list. */
+  return lpPosition->pNext == NULL;
+}
+
+  /* if pPrev is NULL, then it's obvious that this element is the head
+   * of whatever linked list it's in, or it's the only element in the list,
+   * period. */
+  return lpPosition->pPrev == NULL;
+}
+
+//////////////////////////////////////////////////////////////////////////////
 // SetData function
 
 void SetData(LPPOSITION lpCurrentPosition,
