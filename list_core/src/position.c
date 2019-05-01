@@ -19,17 +19,17 @@ void CreatePosition(LPPPOSITION lppNewPosition) {
 					// allocated POSITION structure instance
 	}
 
-	POSITION* pResult = NULL;
+	LPPOSITION lpResult = NULL;
 
-	pResult = (LPPOSITION)malloc(1*sizeof(POSITION));
-	if (pResult == NULL) {
+	lpResult = (LPPOSITION)malloc(1*sizeof(POSITION));
+	if (lpResult == NULL) {
 		fprintf(stderr, FAILED_ALLOC_NEW_NODE);
 		exit(EXIT_FAILURE);
 	}
 
-	memset(pResult, 0, sizeof(POSITION));
+	memset(lpResult, 0, sizeof(POSITION));
 
-	*lppNewPosition = pResult;
+	*lppNewPosition = lpResult;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
