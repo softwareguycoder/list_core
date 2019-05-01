@@ -204,7 +204,7 @@ POSITION* GetHeadPosition(POSITION** ppMember);
  * @remarks If you have already reached the tail of the list when this function
  * is called, then the function returns NULL.
  */
-POSITION* GetNext(POSITION *pos);
+POSITION* GetNextNode(POSITION *pos);
 
 /**
  * @brief Gets the address of a POSITION structure that references the tail

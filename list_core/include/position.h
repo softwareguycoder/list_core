@@ -26,12 +26,12 @@
  * node.
  */
 typedef struct _tagPOSITION {
-    ROOT* pListRoot;
+  ROOT* pListRoot;
 
-    struct _tagPOSITION* pPrev;
-    struct _tagPOSITION* pNext;
+  struct _tagPOSITION* pPrev;
+  struct _tagPOSITION* pNext;
 
-    void* pvData;
+  void* pvData;
 } POSITION, *LPPOSITION, **LPPPOSITION;
 
 /**
@@ -41,6 +41,39 @@ typedef struct _tagPOSITION {
  * with the address of the newly-allocated POSITION structure.
  */
 void CreatePosition(LPPPOSITION lppNewPosition);
+
+/**
+ * @name GetData
+ * @brief Gets the address of the data referenced by this node.
+ * @param lpCurrentPosition Address of a POSITION instance denoting the node
+ * to query.
+ * @param ppvData Address of a pointer variable that will be filled with the
+ * data's storage location.
+ */
+void GetData(LPPOSITION lpCurrentPosition,
+    void** ppvData);
+
+/**
+ * @name GetNext
+ * @brief Gets the address of the next node after this one.
+ * @param lpCurrentPosition Address of a POSITION instance denoting the node
+ * to query.
+ * @param lppNext Address of a pointer variable that will be filled with the
+ * next node's storage location, or NULL if there is no next node.
+ */
+void GetNext(LPPOSITION lpCurrentPosition,
+    LPPPOSITION lppNext);
+
+/**
+ * @name GetPrev
+ * @brief Gets the address of the prev node after this one.
+ * @param lpCurrentPosition Address of a POSITION instance denoting the node
+ * to query.
+ * @param lppNext Address of a pointer variable that will be filled with the
+ * previous node's storage location, or NULL if there is no previous node.
+ */
+void GetPrev(LPPOSITION lpCurrentPosition,
+    LPPPOSITION lppPrev);
 
 /**
  * @name InitializePosition
@@ -55,6 +88,33 @@ void CreatePosition(LPPPOSITION lppNewPosition);
  * node should refer.  May be NULL.
  */
 void InitializePosition(LPPOSITION lpPosition, LPPOSITION lpPrev,
-		LPPOSITION lpNext, void* pvData);
+    LPPOSITION lpNext, void* pvData);
+
+/**
+ * @name SetData
+ * @brief
+ * @param lpCurrentPosition
+ * @param pvData
+ */
+void SetData(LPPOSITION lpCurrentPosition,
+    void* pvData);
+
+/**
+ * @name SetNext
+ * @brief
+ * @param lpCurrentPosition
+ * @param lpNextPosition
+ */
+void SetNext(LPPOSITION lpCurrentPosition,
+    LPPOSITION lpNextPosition);
+
+/**
+ * @name SetPrev
+ * @brief
+ * @param lpCurrentPosition
+ * @param lpPrevPosition
+ */
+void SetPrev(LPPOSITION lpCurrentPosition,
+    LPPOSITION lpPrevPosition);
 
 #endif /* __POSITION_H__ */

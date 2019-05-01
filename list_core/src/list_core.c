@@ -333,7 +333,7 @@ POSITION* FindElement(POSITION** ppListHead, void *pSearchKey,
 	do {
 		if (lpfnCompare(pSearchKey, pos->pvData))
 			return pos;
-	} while ((pos = GetNext(pos)) != NULL);
+	} while ((pos = GetNextNode(pos)) != NULL);
 
 	/* If we are here, then the desired element could not be located. */
 
@@ -356,7 +356,7 @@ void ForEach(POSITION **ppListHead, LPACTION_ROUTINE lpfnForEachRoutine) {
 	do {
 		if (lpfnForEachRoutine != NULL)
 			lpfnForEachRoutine(pos->pvData);
-	} while ((pos = GetNext(pos)) != NULL);
+	} while ((pos = GetNextNode(pos)) != NULL);
 
 	(*ppListHead) = NULL;
 }
@@ -387,7 +387,7 @@ int GetCount(POSITION** ppElement) {
 	 * 1 to start and attempt to go the next element right off the bat. */
 
 	int nResult = 1;        // how many elements there are in the list
-	while ((pos = GetNext(pos)) != NULL) {
+	while ((pos = GetNextNode(pos)) != NULL) {
 		nResult++;
 	}
 	return nResult;
@@ -408,13 +408,16 @@ POSITION* GetHeadPosition(POSITION** ppMember) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// GetNext function
+// GetNextNode function
 
-POSITION* GetNext(POSITION *pos) {
-	if (pos == NULL)
-		return NULL;
+POSITION* GetNextNode(POSITION *pos) {
+	if (pos == NULL) {
+	  return NULL;
+	}
 
-	return pos->pNext;
+	LPPOSITION lpResult = NULL;
+	GetNext(pos, &lpResult);
+	return lpResult;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
