@@ -26,8 +26,6 @@
  * node.
  */
 typedef struct _tagPOSITION {
-  ROOT* pListRoot;
-
   struct _tagPOSITION* pPrev;
   struct _tagPOSITION* pNext;
 
