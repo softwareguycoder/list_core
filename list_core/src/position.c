@@ -48,7 +48,7 @@ void DestroyPosition(LPPPOSITION lppPosition) {
   // that prev, next nodes and data are no longer referred to (it may
   // even be the case that pointer member variables may still be set to
   // addresses of free'd memory; when we free() the structure the OS will
-  // try to re-free the memory which we do not want
+  // try to re-free the memory which we do not want)
   memset((*lppPosition), 0, sizeof(POSITION));
 
   FreeBuffer((void**)lppPosition);
