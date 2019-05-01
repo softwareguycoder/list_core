@@ -52,12 +52,24 @@ void CreateNode(POSITION** ppNewNode) {
 		return;
 	}
 
-	*ppNewNode = (POSITION*) malloc(1*sizeof(POSITION));
+	*ppNewNode = (POSITION*) malloc(1 * sizeof(POSITION));
 	if ((*ppNewNode) == NULL) {
 		DisplayError(FAILED_ALLOC_NEW_NODE);
 	}
 
 	memset(*ppNewNode, 0, sizeof(POSITION));
+
+	if ((*ppNewNode)->pvData == NULL) {
+		printf("New node's pvData is NULL\n");
+	} else {
+		printf("New node's pvData is NULL\n");
+	}
+
+	if ((*ppNewNode)->pPrev == NULL) {
+		printf("New node's pvData is NULL\n");
+	} else {
+		printf("New node's pvData is not NULL\n");
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -80,7 +92,7 @@ void CreateRoot(ROOT** ppListRoot) {
 	/* Create a new root structure to bear information about the
 	 * head and tail. */
 	ROOT* pListRoot = NULL;
-	pListRoot = (ROOT*) malloc(1*sizeof(ROOT));
+	pListRoot = (ROOT*) malloc(1 * sizeof(ROOT));
 	if (pListRoot == NULL) {
 		DisplayError(FAILED_ALLOC_ROOT);
 	}
@@ -164,7 +176,7 @@ BOOL AddTail(POSITION** ppListHead, void *pvData) {
 	ValidateData(&pvData);
 
 	if (!IsListHeadValid(ppListHead)) {
-	    return FALSE;
+		return FALSE;
 	}
 
 	POSITION* pNewTail = NULL;
@@ -239,8 +251,8 @@ void CreateNewList(POSITION** ppNewHead, void** ppvData) {
 // DestroyList function
 
 void DestroyList(POSITION** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc) {
-	if (!IsListHeadValid(ppListHead)){
-	    return;
+	if (!IsListHeadValid(ppListHead)) {
+		return;
 	}
 
 	if (lpfnDeallocFunc == NULL) {
@@ -294,12 +306,12 @@ void DestroyList(POSITION** ppListHead, LPDEALLOC_ROUTINE lpfnDeallocFunc) {
 
 POSITION* FindElement(POSITION** ppListHead, void *pSearchKey,
 		LPCOMPARE_ROUTINE lpfnCompare) {
-    if (GetCount(ppListHead) == 0) {
-        return NULL;
-    }
+	if (GetCount(ppListHead) == 0) {
+		return NULL;
+	}
 
 	if (!IsListHeadValid(ppListHead)) {
-	    return NULL;
+		return NULL;
 	}
 
 	ValidateSearchKey(pSearchKey);
@@ -333,7 +345,7 @@ POSITION* FindElement(POSITION** ppListHead, void *pSearchKey,
 
 void ForEach(POSITION **ppListHead, LPACTION_ROUTINE lpfnForEachRoutine) {
 	if (!IsListHeadValid(ppListHead)) {
-	    return;
+		return;
 	}
 
 	POSITION *pos = GetHeadPosition(ppListHead);
@@ -425,7 +437,7 @@ POSITION* GetTailPosition(POSITION** ppMember) {
 BOOL RemoveElement(POSITION** ppListHead, void *pSearchKey,
 		LPCOMPARE_ROUTINE lpfnSearch) {
 	if (!IsListHeadValid(ppListHead)) {
-	    return FALSE;
+		return FALSE;
 	}
 
 	ValidateSearchKey(pSearchKey);

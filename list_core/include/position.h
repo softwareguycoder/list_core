@@ -34,4 +34,27 @@ typedef struct _tagPOSITION {
     void* pvData;
 } POSITION, *LPPOSITION, **LPPPOSITION;
 
+/**
+ * @name CreatePosition
+ * @brief Allocates memory for a new instance of the POSITION structure.
+ * @param lppNewPosition Address of a pointer whose value is to be filled
+ * with the address of the newly-allocated POSITION structure.
+ */
+void CreatePosition(LPPPOSITION lppNewPosition);
+
+/**
+ * @name InitializePosition
+ * @brief Initializes the members of an instance of the POSITION structure.
+ * @param lpPosition Address of the POSITION structure whose members are to
+ * be set to the new values.
+ * @param lpPrev Address of a POSITION structure that references the previous
+ * node in the linked list.  May be NULL.
+ * @param lpNext Address of a POSITION structure that references the next
+ * node in the linked list.  May be NULL.
+ * @param pvData Address of storage containing data to which the
+ * node should refer.  May be NULL.
+ */
+void InitializePosition(LPPOSITION lpPosition, LPPOSITION lpPrev,
+		LPPOSITION lpNext, void* pvData);
+
 #endif /* __POSITION_H__ */
