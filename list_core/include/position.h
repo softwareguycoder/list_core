@@ -32,6 +32,6 @@ typedef struct _tagPOSITION {
     struct _tagPOSITION* pNext;
 
     void* pvData;
-} POSITION;
+} POSITION, *LPPOSITION, **LPPPOSITION;
 
 #endif /* __POSITION_H__ */
