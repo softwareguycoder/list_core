@@ -7,6 +7,12 @@
 
 #include "position.h"
 
+///////////////////////////////////////////////////////////////////////////////
+// Publicly-exposed functions
+
+///////////////////////////////////////////////////////////////////////////////
+// AddElement function
+
 void AddElement(LPPPOSITION lppElement, void* pvData) {
   if (*lppElement == NULL) {
     CreateList(lppElement, pvData);
@@ -25,6 +31,9 @@ void AddElement(LPPPOSITION lppElement, void* pvData) {
   *lppElement = lpNew;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// ClearList function
+
 void ClearList(LPPPOSITION lppElement,
     LPDEALLOC_ROUTINE lpfnDeallocFunc) {
   if (lppElement == NULL || *lppElement == NULL) {
@@ -42,6 +51,9 @@ void ClearList(LPPPOSITION lppElement,
   }
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// CreateList function
+
 void CreateList(LPPPOSITION lppNewHead, void* pvData) {
   if (lppNewHead == NULL) {
     return;
@@ -51,6 +63,9 @@ void CreateList(LPPPOSITION lppNewHead, void* pvData) {
 
   SetPositionData(*lppNewHead, pvData);
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// FindElement function
 
 LPPOSITION FindElement(LPPOSITION lpElement,
     void* pvSearchKey, LPCOMPARE_ROUTINE lpfnCompare) {
@@ -69,6 +84,9 @@ LPPOSITION FindElement(LPPOSITION lpElement,
                   // dicated by the predicate
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// FindElementWhere function
+
 LPPOSITION FindElementWhere(LPPOSITION lpElement,
     LPPREDICATE_ROUTINE lpfnPredicate) {
   if (lpElement == NULL || lpfnPredicate == NULL) {
@@ -86,6 +104,9 @@ LPPOSITION FindElementWhere(LPPOSITION lpElement,
                   // dicated by the predicate
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// GetElementCount function
+
 int GetElementCount(LPPOSITION lpElement) {
   int nResult = 0;
   if (lpElement == NULL) {
@@ -99,6 +120,9 @@ int GetElementCount(LPPOSITION lpElement) {
 
   return nResult;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// GetElementCountWhere function
 
 int GetElementCountWhere(LPPOSITION lpElement,
   LPPREDICATE_ROUTINE lpfnPredicate) {
@@ -119,6 +143,9 @@ int GetElementCountWhere(LPPOSITION lpElement,
 
   return nResult;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// RemoveElement function
 
 void RemoveElement(LPPPOSITION lppElement,
     LPDEALLOC_ROUTINE lpfnDealloc) {
@@ -165,3 +192,5 @@ void RemoveElement(LPPPOSITION lppElement,
   free((*lppElement)->pPrev->pNext);
   (*lppElement)->pPrev->pNext = *lppElement;
 }
+
+///////////////////////////////////////////////////////////////////////////////
