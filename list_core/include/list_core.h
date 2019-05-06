@@ -19,7 +19,7 @@
 #ifndef __LIST_CORE_H__
 #define __LIST_CORE_H__
 
-typedef struct _tagPOSITION POSITION, *LPPOSITION, **LPPPOSITION;
+#include "position.h"
 
 /**
  * @brief Callback signature for a function that compares two objects.
