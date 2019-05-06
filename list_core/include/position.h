@@ -75,15 +75,6 @@ LPPOSITION GetNextPosition(LPPOSITION lpElement);
 LPPOSITION GetPrevPosition(LPPOSITION lpElement);
 
 /**
- * @name GetTailPosition
- * @brief Resets the current element pointer to point to the tail of the list.
- * @param lppElement Address of the current element pointer.
- * @remarks The value of lppElement is reset to the tail, or NULL if the list
- * has no elements.
- */
-void MoveToTailPosition(LPPPOSITION lppElement);
-
-/**
  * @name IsPositionHead
  * @brief Determines whether the specified element is the head of the list.
  * @param lpElement Address of any of the elements of a list.
@@ -117,13 +108,22 @@ BOOL IsPositionTail(LPPOSITION lpElement);
 BOOL IsSoleElement(LPPOSITION lpElement);
 
 /**
- * @name GetHeadPosition
+ * @name MoveToHeadPosition
  * @brief Resets the element pointer passed to refer to the head of the list.
  * @param lppElement Address of the current element pointer.
  * @remarks The current element pointer is reset to point to the head element.
  * Head elements are defined to be those who have a pPrev pointer that is NULL.
  */
 void MoveToHeadPosition(LPPPOSITION lppElement);
+
+/**
+ * @name MoveToTailPosition
+ * @brief Resets the current element pointer to point to the tail of the list.
+ * @param lppElement Address of the current element pointer.
+ * @remarks The value of lppElement is reset to the tail, or NULL if the list
+ * has no elements.
+ */
+void MoveToTailPosition(LPPPOSITION lppElement);
 
 /**
  * @name SetNextPosition
