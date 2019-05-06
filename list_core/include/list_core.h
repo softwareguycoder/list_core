@@ -106,7 +106,9 @@ void CreateList(LPPPOSITION lppNewHead, void* pvData);
  * @param lpElement Address of any element in the list.
  * @param lpfnAction Address of a function that specifies the code to run for
  * each element of the list.
- * @remarks The current element pointer is not reset by this operation.
+ * @remarks The current element pointer is not reset by this operation.  The
+ * user-defined function is passed a pointer to the data referenced by the
+ * current node.
  */
 void DoForEach(LPPOSITION lpElement, LPACTION_ROUTINE lpfnAction);
 
