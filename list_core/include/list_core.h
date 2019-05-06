@@ -97,6 +97,16 @@ void ClearList(LPPPOSITION lppElement, LPDEALLOC_ROUTINE lpfnDeallocFunc);
 void CreateList(LPPPOSITION lppNewHead, void* pvData);
 
 /**
+ * @name DoForEach
+ * @brief Executes an action for each of the elements of the linked list.
+ * @param lpElement Address of any element in the list.
+ * @param lpfnAction Address of a function that specifies the code to run for
+ * each element of the list.
+ * @remarks The current element pointer is not reset by this operation.
+ */
+void DoForEach(LPPOSITION lpElement, LPACTION_ROUTINE lpfnAction);
+
+/**
  * @name FindElement
  * @brief Locates the element that matches the criteria specified and
  * returns the address of the matching element, or NULL if not found.
