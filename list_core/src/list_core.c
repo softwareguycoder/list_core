@@ -59,7 +59,7 @@ void ClearList(LPPPOSITION lppElement,
     return; // Required parameter
   }
 
-  GetTailPosition(lppElement);
+  MoveToTailPosition(lppElement);
 
   while(*lppElement != NULL) {
     RemoveElement(lppElement, lpfnDeallocFunc);

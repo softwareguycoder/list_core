@@ -75,7 +75,7 @@ LPPOSITION GetPrevPosition(LPPOSITION lpElement) {
   return lpElement->pPrev;
 }
 
-void GetTailPosition(LPPPOSITION lppElement) {
+void MoveToTailPosition(LPPPOSITION lppElement) {
   if (lppElement == NULL || *lppElement == NULL) {
     return;  // nothing in the list to do anything with
   }

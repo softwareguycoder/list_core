@@ -81,7 +81,7 @@ LPPOSITION GetPrevPosition(LPPOSITION lpElement);
  * @remarks The value of lppElement is reset to the tail, or NULL if the list
  * has no elements.
  */
-void GetTailPosition(LPPPOSITION lppElement);
+void MoveToTailPosition(LPPPOSITION lppElement);
 
 /**
  * @name IsPositionHead
