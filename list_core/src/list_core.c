@@ -26,19 +26,15 @@
 // Publicly-exposed functions
 
 //////////////////////////////////////////////////////////////////////////////
-// AddElementToTail function
+// AddElement function
 
-void AddElementToTail(LPPPOSITION lppElement, void* pvData) {
+void AddElement(LPPPOSITION lppElement, void* pvData) {
   if (*lppElement == NULL) {
     CreateList(lppElement, pvData);
     return;
   }
 
   LPPOSITION lpNew = NULL;
-
-  // Before we begin the add operation, we must
-  // move the current-element pointer to the tail of the list
-  MoveToTailPosition(lppElement);
 
   CreatePosition(&lpNew);
 
@@ -48,6 +44,15 @@ void AddElementToTail(LPPPOSITION lppElement, void* pvData) {
   SetNextPosition(*lppElement, lpNew);
 
   *lppElement = lpNew;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// AddElementToTail function
+
+void AddElementToTail(LPPPOSITION lppElement, void* pvData) {
+	MoveToTailPosition(lppElement);
+
+	AddElement(lppElement, pvData);
 }
 
 //////////////////////////////////////////////////////////////////////////////
