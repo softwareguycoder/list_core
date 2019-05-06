@@ -22,6 +22,12 @@
 #include "position.h"
 
 /**
+ * @brief Callback signature for an 'action' routine, i.e., a function whose
+ * only purpose in life is to run code.
+ */
+typedef void (*LPACTION_ROUTINE)(void);
+
+/**
  * @brief Callback signature for a function that compares two objects.
  * @param pvData1 Instance of an object for the left side of the comparison.
  * @param pvData2 Instance of an object for the right side of the comparison.
