@@ -53,15 +53,6 @@ void CreatePosition(LPPPOSITION lppPosition);
 void DestroyPosition(LPPPOSITION lppPosition);
 
 /**
- * @name GetHeadPosition
- * @brief Resets the element pointer passed to refer to the head of the list.
- * @param lppElement Address of the current element pointer.
- * @remarks The current element pointer is reset to point to the head element.
- * Head elements are defined to be those who have a pPrev pointer that is NULL.
- */
-void GetHeadPosition(LPPPOSITION lppElement);
-
-/**
  * @name GetNextPosition
  * @brief Given the address of a list element, returns the address of the
  * next element in the list.
@@ -124,6 +115,15 @@ BOOL IsPositionTail(LPPOSITION lpElement);
  * argument.
  */
 BOOL IsSoleElement(LPPOSITION lpElement);
+
+/**
+ * @name GetHeadPosition
+ * @brief Resets the element pointer passed to refer to the head of the list.
+ * @param lppElement Address of the current element pointer.
+ * @remarks The current element pointer is reset to point to the head element.
+ * Head elements are defined to be those who have a pPrev pointer that is NULL.
+ */
+void MoveToHeadPosition(LPPPOSITION lppElement);
 
 /**
  * @name SetNextPosition

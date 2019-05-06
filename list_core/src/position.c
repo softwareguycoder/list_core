@@ -61,21 +61,6 @@ void DestroyPosition(LPPPOSITION lppPosition) {
   *lppPosition = NULL;
 }
 
-void GetHeadPosition(LPPPOSITION lppElement) {
-  if (lppElement == NULL || *lppElement == NULL) {
-    return;  // nothing in the list to do anything with
-  }
-
-  do {
-    /* If we are already given a position that points
-       to the head, there is nothing to do but return
-       the same thing as we were given. */
-    if (IsPositionHead(*lppElement)) {
-      return;
-    }
-  } while((*lppElement = GetPrev(*lppElement)) != NULL);
-}
-
 LPPOSITION GetNextPosition(LPPOSITION lpElement) {
   if (lpElement == NULL) {
     return NULL;
@@ -126,6 +111,22 @@ BOOL IsSoleElement(LPPOSITION lpElement) {
 
   return lpElement->pPrev == NULL
       && lpElement->pNext == NULL;
+}
+
+
+void MoveToHeadPosition(LPPPOSITION lppElement) {
+  if (lppElement == NULL || *lppElement == NULL) {
+    return;  // nothing in the list to do anything with
+  }
+
+  do {
+    /* If we are already given a position that points
+       to the head, there is nothing to do but return
+       the same thing as we were given. */
+    if (IsPositionHead(*lppElement)) {
+      return;
+    }
+  } while((*lppElement = GetPrev(*lppElement)) != NULL);
 }
 
 void SetNextPosition(LPPOSITION lpElement, LPPOSITION lpValue) {

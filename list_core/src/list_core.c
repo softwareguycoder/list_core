@@ -87,7 +87,7 @@ void DoForEach(LPPOSITION lpElement, LPACTION_ROUTINE lpfnAction) {
     return;
   }
 
-  GetHeadPosition(&lpElement);
+  MoveToHeadPosition(&lpElement);
 
   do {
     lpfnAction(lpElement->pvData);
@@ -102,7 +102,7 @@ LPPOSITION FindElement(LPPOSITION lpElement,
     return NULL;  // Required parameters
   }
 
-  GetHeadPosition(&lpElement);
+  MoveToHeadPosition(&lpElement);
   do {
     if (lpfnCompare(pvSearchKey, lpElement->pvData)) {
       return lpElement;
@@ -122,7 +122,7 @@ LPPOSITION FindElementWhere(LPPOSITION lpElement,
     return NULL;  // Required parameters
   }
 
-  GetHeadPosition(&lpElement);
+  MoveToHeadPosition(&lpElement);
   do {
     if (lpfnPredicate(lpElement->pvData)) {
       return lpElement;
@@ -142,7 +142,7 @@ int GetElementCount(LPPOSITION lpElement) {
     return nResult;
   }
 
-  GetHeadPosition(&lpElement);
+  MoveToHeadPosition(&lpElement);
   do {
     nResult++;
   } while((lpElement = lpElement->pNext) != NULL);
@@ -164,7 +164,7 @@ int GetElementCountWhere(LPPOSITION lpElement,
     return nResult;
   }
 
-  GetHeadPosition(&lpElement);
+  MoveToHeadPosition(&lpElement);
   do {
     if (lpfnPredicate(lpElement->pvData))
       nResult++;
