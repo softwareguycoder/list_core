@@ -128,6 +128,9 @@ void MoveToTailPosition(LPPPOSITION lppElement) {
 }
 
 void SetNextPosition(LPPOSITION lpElement, LPPOSITION lpValue) {
+	if (lpElement == NULL) {
+		return;
+	}
 	lpElement->pNext = lpValue;
 }
 
@@ -139,5 +142,8 @@ void SetPositionData(LPPOSITION lpElement, void* pvData) {
 }
 
 void SetPrevPosition(LPPOSITION lpElement, LPPOSITION lpValue) {
+	if (lpElement == NULL) {
+		return;
+	}
 	lpElement->pPrev = lpValue;
 }
