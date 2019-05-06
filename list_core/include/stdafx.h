@@ -18,8 +18,8 @@
 // along with list_core.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#ifndef __STDAFX_H__
-#define __STDAFX_H__
+#ifndef __LIST_CORE_STDAFX_H__
+#define __LIST_CORE_STDAFX_H__
 
 #define _GNU_SOURCE
 
@@ -42,4 +42,4 @@
 #include <../../api_core/api_core/include/api_core.h>
 #include <../../common_core/common_core/include/common_core.h>
 
-#endif //__STDAFX_H__
+#endif //__LIST_CORE_STDAFX_H__
