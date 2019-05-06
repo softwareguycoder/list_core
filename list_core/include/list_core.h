@@ -6,13 +6,22 @@
 
 typedef struct _tagPOSITION POSITION, *LPPOSITION, **LPPPOSITION;
 
-/**
- * @name GetCount
- * @brief Gets the number of elements contained in the list.
- * @param Pointer to a POSITION structure that refers to any of the elements
- * in the list.
- * @return Count of elements in the list.
- */
-int GetCount(LPPOSITION lpMember);
+typedef BOOL (*LPCOMPARE_ROUTINE)(void*, void*);
+
+typedef void (*LPDEALLOC_ROUTINE)(void*);
+
+typedef BOOL (*LPPREDICATE_ROUTINE)(void*);
+
+void AddElement(LPPPOSITION lppElement, void* pvData);
+void ClearList(LPPPOSITION lppElement, LPDEALLOC_ROUTINE lpfnDeallocFunc);
+void CreateList(LPPPOSITION lppNewHead, void* pvData);
+LPPOSITION FindElement(LPPOSITION lpElement, void* pvSearchKey,
+    LPCOMPARE_ROUTINE lpfnCompare);
+LPPOSITION FindElementWhere(LPPOSITION lpElement,
+    LPPREDICATE_ROUTINE lpfnPredicate);
+int GetElementCount(LPPOSITION lpElement);
+int GetElementCountWhere(LPPOSITION lpElement,
+    LPPREDICATE_ROUTINE lpfnPredicate);
+void RemoveElement(LPPPOSITION lppElement, LPDEALLOC_ROUTINE lpfnDealloc);
 
 #endif //__LIST_CORE_H__
