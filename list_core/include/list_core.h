@@ -24,8 +24,12 @@
 /**
  * @brief Callback signature for an 'action' routine, i.e., a function whose
  * only purpose in life is to run code.
+ * @param pvData Reference to the data that is tracked by the current node.
+ * @remarks This function allows the caller to supply a function that is
+ * called back for each element in the list, and is provided a pointer
+ * to the current node's data.
  */
-typedef void (*LPACTION_ROUTINE)(void);
+typedef void (*LPACTION_ROUTINE)(void* pvData);
 
 /**
  * @brief Callback signature for a function that compares two objects.

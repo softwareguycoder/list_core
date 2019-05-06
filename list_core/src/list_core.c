@@ -90,7 +90,7 @@ void DoForEach(LPPOSITION lpElement, LPACTION_ROUTINE lpfnAction) {
   GetHeadPosition(&lpElement);
 
   do {
-    lpfnAction();
+    lpfnAction(lpElement->pvData);
   } while((lpElement = lpElement->pNext) != NULL);
 }
 //////////////////////////////////////////////////////////////////////////////
