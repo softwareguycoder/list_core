@@ -61,9 +61,21 @@ typedef void (*LPDEALLOC_ROUTINE)(void* pvData);
 typedef BOOL (*LPPREDICATE_ROUTINE)(void* pvData);
 
 /**
+ * @name AddElement
+ * @brief Adds a new element after the element currently being pointed at in
+ * the linked list; creates a new list if the current element pointer is NULL.
+ * @param lppElement Address of the current element pointer.  This value is
+ * reset to point to the newly-added element after a successful add operation.
+ * @param pvData Address of data to be pointed to by the new element.
+ * @remarks Adds a new node to the end of the linked list and resets the
+ * current element pointer to the address of the new node.
+ */
+void AddElement(LPPPOSITION lppElement, void* pvData);
+
+/**
  * @name AddElementToTail
- * @brief Adds a new element to the linked list; creates a new list if the
- * current element pointer is NULL.
+ * @brief Adds a new element to the tail of the linked list; creates a new
+ * list if the current element pointer is NULL.
  * @param lppElement Address of the current element pointer.  This value is
  * reset to point to the tail of the list after a successful add operation.
  * @param pvData Address of data to be pointed to by the new element.
