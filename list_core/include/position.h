@@ -53,6 +53,17 @@ void CreatePosition(LPPPOSITION lppPosition);
 void DestroyPosition(LPPPOSITION lppPosition);
 
 /**
+ * @name GetHeadPosition
+ * @brief Given the address of a list element, returns the address of the
+ * head element of the list.
+ * @param lpElement Address of any of the elements in the list.
+ * @return Address of the head of the list, or NULL if the list has no
+ * elements.
+ * @remarks The value passed to this function is not altered by the operation.
+ */
+LPPOSITION GetHeadPosition(LPPOSITION lpElement);
+
+/**
  * @name GetNextPosition
  * @brief Given the address of a list element, returns the address of the
  * next element in the list.
@@ -73,6 +84,17 @@ LPPOSITION GetNextPosition(LPPOSITION lpElement);
  * @remarks The value passed to this function is not altered by the operation.
  */
 LPPOSITION GetPrevPosition(LPPOSITION lpElement);
+
+/**
+ * @name GetTailPosition
+ * @brief Given the address of a list element, returns the address of the
+ * tail element of the list.
+ * @param lpElement Address of any of the elements in the list.
+ * @return Address of the tail of the list, or NULL if the list has no
+ * elements.
+ * @remarks The value passed to this function is not altered by the operation.
+ */
+LPPOSITION GetTailPosition(LPPOSITION lpElement);
 
 /**
  * @name IsPositionHead

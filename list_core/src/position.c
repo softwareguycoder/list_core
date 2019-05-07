@@ -23,24 +23,6 @@
 #include "position.h"
 
 //////////////////////////////////////////////////////////////////////////////
-// Internal-use-only functions
-
-LPPOSITION GetNext(LPPOSITION pos) {
-	if (pos == NULL) {
-		return NULL;  // Required parameter
-	}
-
-	return pos->pNext;
-}
-
-LPPOSITION GetPrev(LPPOSITION pos) {
-	if (pos == NULL) {
-		return NULL;
-	}
-	return pos->pPrev;
-}
-
-//////////////////////////////////////////////////////////////////////////////
 // Publicly-exposed functions
 
 void CreatePosition(LPPPOSITION lppPosition) {
@@ -61,6 +43,20 @@ void DestroyPosition(LPPPOSITION lppPosition) {
 	*lppPosition = NULL;
 }
 
+LPPOSITION GetHeadPosition(LPPOSITION lpElement) {
+	if (lpElement == NULL) {
+		return NULL; // List has zero elements
+	}
+
+	if (IsPositionHead(lpElement)) {
+		return lpElement;
+	}
+
+	MoveToHeadPosition(&lpElement);
+
+	return lpElement;
+}
+
 LPPOSITION GetNextPosition(LPPOSITION lpElement) {
 	if (lpElement == NULL) {
 		return NULL;
@@ -73,6 +69,20 @@ LPPOSITION GetPrevPosition(LPPOSITION lpElement) {
 		return NULL;
 	}
 	return lpElement->pPrev;
+}
+
+LPPOSITION GetTailPosition(LPPOSITION lpElement) {
+	if (lpElement == NULL) {
+		return NULL; // List has zero elements
+	}
+
+	if (IsPositionHead(lpElement)) {
+		return lpElement;
+	}
+
+	MoveToHeadPosition(&lpElement);
+
+	return lpElement;
 }
 
 BOOL IsPositionHead(LPPOSITION lpElement) {
@@ -109,7 +119,7 @@ void MoveToHeadPosition(LPPPOSITION lppElement) {
 		if (IsPositionHead(*lppElement)) {
 			return;
 		}
-	} while ((*lppElement = GetPrev(*lppElement)) != NULL);
+	} while ((*lppElement = GetPrevPosition(*lppElement)) != NULL);
 }
 
 void MoveToTailPosition(LPPPOSITION lppElement) {
@@ -124,7 +134,7 @@ void MoveToTailPosition(LPPPOSITION lppElement) {
 		if (IsPositionTail(*lppElement)) {
 			return;
 		}
-	} while ((*lppElement = GetNext(*lppElement)) != NULL);
+	} while ((*lppElement = GetNextPosition(*lppElement)) != NULL);
 }
 
 void SetNextPosition(LPPOSITION lpElement, LPPOSITION lpValue) {
