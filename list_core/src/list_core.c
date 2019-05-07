@@ -113,7 +113,8 @@ LPPOSITION FindElement(LPPOSITION lpElement,
 
   MoveToHeadPosition(&lpElement);
   do {
-    if (lpfnCompare(pvSearchKey, lpElement->pvData)) {
+	void *pvCurrentEltData = lpElement->pvData;
+    if (lpfnCompare(pvSearchKey, pvCurrentEltData)) {
       return lpElement;
     }
   } while((lpElement = lpElement->pNext) != NULL);
