@@ -89,6 +89,22 @@ void CreateList(LPPPOSITION lppNewHead, void* pvData) {
 }
 
 //////////////////////////////////////////////////////////////////////////////
+// DeallocateNothing function
+
+void DeallocateNothing(void* pvData){ /* no-op */ }
+
+//////////////////////////////////////////////////////////////////////////////
+// DefaultFree function
+
+void DefaultFree(void* pvData) {
+	if (pvData == NULL) {
+		return;
+	}
+
+	free(pvData);
+}
+
+//////////////////////////////////////////////////////////////////////////////
 // DoForEach function
 
 void DoForEach(LPPOSITION lpElement, LPACTION_ROUTINE lpfnAction) {

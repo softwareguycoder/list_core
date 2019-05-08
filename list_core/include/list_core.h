@@ -113,6 +113,29 @@ void ClearList(LPPPOSITION lppElement, LPDEALLOC_ROUTINE lpfnDeallocFunc);
 void CreateList(LPPPOSITION lppNewHead, void* pvData);
 
 /**
+ * @brief Deallocation routine to supply to ClearList that does a no-op.
+ * @param pvData Address of the data to be deallocated.
+ * @remarks Use this function as a ClearList() callback when you require no
+ * special processing of the deallocation of data referred to by linked-list
+ * nodes, either because the addresses of the data items are managed elsewhere,
+ * or you allocated the data on the stack frame.  In any event, this call
+ * back ignores the value of its argument and does absolutely nothing.
+ */
+void DeallocateNothing(void* pvData);
+
+/**
+ * @brief Default free-the-data function.
+ * @param pvData Address of the data to be deallocated.
+ * @remarks Use this function as a ClearList() callback when you require no
+ * special handling of deallocation of data associated with linked-list
+ * items, beyond a simple call to free(). Obviously, the data must have been
+ * allocated with malloc() first.  Provides a labor-saving device to
+ * applications who just want the list cleared and don't need to bother
+ * providing a custom deallocation routine.
+ */
+void DefaultFree(void* pvData);
+
+/**
  * @name DoForEach
  * @brief Executes an action for each of the elements of the linked list.
  * @param lpElement Address of any element in the list.
