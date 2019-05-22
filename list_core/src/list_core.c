@@ -248,4 +248,26 @@ void RemoveElement(LPPPOSITION lppElement,
   (*lppElement)->pPrev->pNext = *lppElement;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Sum function
+
+int Sum(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine)
+{
+  int nResult = -1;
+  if (lpElement == NULL){
+    return nResult;  // Required parameter
+  }
+
+  if (lpfnSumRoutine == NULL) {
+    return nResult;  // Required parameter
+  }
+
+  MoveToHeadPosition(&lpElement);
+  do {
+    nResult += lpfnSumRoutine(lpElement->pvData);
+  } while((lpElement = lpElement->pNext) != NULL);
+
+  return nResult;
+}
+
 //////////////////////////////////////////////////////////////////////////////

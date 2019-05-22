@@ -61,6 +61,15 @@ typedef void (*LPDEALLOC_ROUTINE)(void* pvData);
 typedef BOOL (*LPPREDICATE_ROUTINE)(void* pvData);
 
 /**
+ * @brief Callback to implement the Sum function with.  This callback tells
+ * us the quantity that should be the nth term of the sequence to be summed.
+ * @param pvData Data referenced by the current linked-list item that should
+ * be referenced in order to calculate the quantity returned by this function.
+ * @return Quantity to be added to all the other terms in the summation.
+ */
+typedef int (*LPSUMMATION_ROUTINE)(void* pvData);
+
+/**
  * @name AddElement
  * @brief Adds a new element after the element currently being pointed at in
  * the linked list; creates a new list if the current element pointer is NULL.
@@ -228,5 +237,18 @@ int GetElementCountWhere(LPPOSITION lpElement,
  * signifies that the list no longer exists at all.
  */
 void RemoveElement(LPPPOSITION lppElement, LPDEALLOC_ROUTINE lpfnDeallocFunc);
+
+/**
+ * @name Sum
+ * @brief Calculates the sum of a sequence of quantities, which itself is
+ * computed from the data elements referred to by the elements of this
+ * linked list.
+ * @param lpElement Address of any of the nodes in the linked list.
+ * @param lpfnSumRoutine Address of a callback that calculates each term
+ * of the summation, given the address of the data referenced by the current
+ * node.
+ * @return Result of the summation, or -1 if an error occurred.
+ */
+int Sum(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine);
 
 #endif //__LIST_CORE_H__
