@@ -268,8 +268,15 @@ void RemoveElementWhere(LPPPOSITION lppElement,
   }
 
   if (lpfnDeallocFunc == NULL) {
-    return;
+    return; // Required parameter
   }
+
+  /*
+   * Kind of brute force...search the list over and over
+   * again for elements that match our search key, using our
+   * comparison callback. Once the FindElement function reports
+   * NULL (as in not found), then quit.
+   */
 
   do {
     *lppElement = FindElement(*lppElement,
