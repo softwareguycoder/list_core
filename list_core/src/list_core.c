@@ -272,6 +272,6 @@ int SumElements(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine)
 
 int SumElementsWhere(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine,
     LPCOMPARE_ROUTINE lpfnCompareRoutine) {
-
+  return 0;
 }
 //////////////////////////////////////////////////////////////////////////////
