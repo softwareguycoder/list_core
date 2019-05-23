@@ -239,6 +239,32 @@ int GetElementCountWhere(LPPOSITION lpElement,
 void RemoveElement(LPPPOSITION lppElement, LPDEALLOC_ROUTINE lpfnDeallocFunc);
 
 /**
+ * @name RemoveElementWhere
+ * @brief Removes all elements from the list that match certain criteria.
+ * @param lppElement Address of the current element pointer maintained by the
+ * applications.  It does not matter where this pointer is actually pointing.
+ * The location of the pointer will be altered by this function to account
+ * for the removed elements.
+ * @param pvSearchKey Address of data to be used as a key in the search for
+ * which elements to delete.
+ * @param lpfnCompareFunc Address of a callback provided by the application
+ * that specifies the rules for determining whether individual list elements
+ * meet the search criteria.
+ * @param lpfnDeallocFunc Address of a callback that implements application-
+ * specific deallocation functionality to properly remove the data each node
+ * refers to from the heap.
+ * @remarks Once the remove operation is complete, the current element pointer
+ * is updated.  Applicatons should not make specific assumptions about the
+ * final location of the current-element pointer, only that it still refers
+ * to something in the list. If the pointer is set to NULL by this function,
+ * then this means that all the elements in the entire list matched the search
+ * and were thus removed.
+ */
+void RemoveElementWhere(LPPPOSITION lppElement,
+    void* pvSearchKey, LPCOMPARE_ROUTINE lpfnCompareFunc,
+    LPDEALLOC_ROUTINE lpfnDeallocFunc);
+
+/**
  * @name SumElements
  * @brief Calculates the sum of a sequence of quantities, which itself is
  * computed from the data elements referred to by the elements of this

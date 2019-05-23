@@ -50,9 +50,9 @@ void AddElement(LPPPOSITION lppElement, void* pvData) {
 // AddElementToTail function
 
 void AddElementToTail(LPPPOSITION lppElement, void* pvData) {
-	MoveToTailPosition(lppElement);
+  MoveToTailPosition(lppElement);
 
-	AddElement(lppElement, pvData);
+  AddElement(lppElement, pvData);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -70,7 +70,7 @@ void ClearList(LPPPOSITION lppElement,
 
   MoveToTailPosition(lppElement);
 
-  while(*lppElement != NULL) {
+  while (*lppElement != NULL) {
     RemoveElement(lppElement, lpfnDeallocFunc);
   }
 }
@@ -91,17 +91,18 @@ void CreateList(LPPPOSITION lppNewHead, void* pvData) {
 //////////////////////////////////////////////////////////////////////////////
 // DeallocateNothing function
 
-void DeallocateNothing(void* pvData){ /* no-op */ }
+void DeallocateNothing(void* pvData) { /* no-op */
+}
 
 //////////////////////////////////////////////////////////////////////////////
 // DefaultFree function
 
 void DefaultFree(void* pvData) {
-	if (pvData == NULL) {
-		return;
-	}
+  if (pvData == NULL) {
+    return;
+  }
 
-	free(pvData);
+  free(pvData);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -116,7 +117,7 @@ void DoForEach(LPPOSITION lpElement, LPACTION_ROUTINE lpfnAction) {
 
   do {
     lpfnAction(lpElement->pvData);
-  } while((lpElement = lpElement->pNext) != NULL);
+  } while ((lpElement = lpElement->pNext) != NULL);
 }
 //////////////////////////////////////////////////////////////////////////////
 // FindElement function
@@ -129,14 +130,14 @@ LPPOSITION FindElement(LPPOSITION lpElement,
 
   MoveToHeadPosition(&lpElement);
   do {
-	void *pvCurrentEltData = lpElement->pvData;
+    void *pvCurrentEltData = lpElement->pvData;
     if (lpfnCompare(pvSearchKey, pvCurrentEltData)) {
       return lpElement;
     }
-  } while((lpElement = lpElement->pNext) != NULL);
+  } while ((lpElement = lpElement->pNext) != NULL);
 
   return NULL;  // If we get here, no element's data meets the criteria
-                  // dicated by the predicate
+                // dicated by the predicate
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -153,10 +154,10 @@ LPPOSITION FindElementWhere(LPPOSITION lpElement,
     if (lpfnPredicate(lpElement->pvData)) {
       return lpElement;
     }
-  } while((lpElement = lpElement->pNext) != NULL);
+  } while ((lpElement = lpElement->pNext) != NULL);
 
   return NULL;  // If we get here, no element's data meets the criteria
-                  // dicated by the predicate
+                // dicated by the predicate
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -171,7 +172,7 @@ int GetElementCount(LPPOSITION lpElement) {
   MoveToHeadPosition(&lpElement);
   do {
     nResult++;
-  } while((lpElement = lpElement->pNext) != NULL);
+  } while ((lpElement = lpElement->pNext) != NULL);
 
   return nResult;
 }
@@ -180,7 +181,7 @@ int GetElementCount(LPPOSITION lpElement) {
 // GetElementCountWhere function
 
 int GetElementCountWhere(LPPOSITION lpElement,
-  LPPREDICATE_ROUTINE lpfnPredicate) {
+    LPPREDICATE_ROUTINE lpfnPredicate) {
   int nResult = 0;
   if (lpElement == NULL) {
     return nResult;
@@ -194,7 +195,7 @@ int GetElementCountWhere(LPPOSITION lpElement,
   do {
     if (lpfnPredicate(lpElement->pvData))
       nResult++;
-  } while((lpElement = lpElement->pNext) != NULL);
+  } while ((lpElement = lpElement->pNext) != NULL);
 
   return nResult;
 }
@@ -235,10 +236,10 @@ void RemoveElement(LPPPOSITION lppElement,
 
   // Remove the head from the list
   if (IsPositionHead((*lppElement)->pPrev)) {
-      (*lppElement)->pPrev->pNext = NULL;
-      free((*lppElement)->pPrev);
-      (*lppElement)->pPrev = NULL;
-      return;
+    (*lppElement)->pPrev->pNext = NULL;
+    free((*lppElement)->pPrev);
+    (*lppElement)->pPrev = NULL;
+    return;
   }
 
   // Remove an element that has neighbors on both sides
@@ -249,12 +250,44 @@ void RemoveElement(LPPPOSITION lppElement,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// RemoveElementWhere function
+
+void RemoveElementWhere(LPPPOSITION lppElement,
+    void* pvSearchKey, LPCOMPARE_ROUTINE lpfnCompareFunc,
+    LPDEALLOC_ROUTINE lpfnDeallocFunc) {
+  if (lppElement == NULL || *lppElement == NULL) {
+    return; // Nothing to do.
+  }
+
+  if (pvSearchKey == NULL) {
+    return; // Required parameter
+  }
+
+  if (lpfnCompareFunc == NULL) {
+    return; // Required parameter
+  }
+
+  if (lpfnDeallocFunc == NULL) {
+    return;
+  }
+
+  do {
+    *lppElement = FindElement(*lppElement,
+        pvSearchKey, lpfnCompareFunc);
+    if (*lppElement == NULL) {
+      break;  // Not found
+    }
+    RemoveElement(lppElement, lpfnDeallocFunc);
+  } while (TRUE);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // Sum function
 
 int SumElements(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine)
 {
   int nResult = -1;
-  if (lpElement == NULL){
+  if (lpElement == NULL) {
     return nResult;  // Required parameter
   }
 
@@ -265,7 +298,7 @@ int SumElements(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine)
   MoveToHeadPosition(&lpElement);
   do {
     nResult += lpfnSumRoutine(lpElement->pvData);
-  } while((lpElement = lpElement->pNext) != NULL);
+  } while ((lpElement = lpElement->pNext) != NULL);
 
   return nResult;
 }
@@ -300,7 +333,7 @@ int SumElementsWhere(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine,
       continue; // Skip elements for which criteria is not met
     }
     nResult += lpfnSumRoutine(lpElement->pvData);
-  } while((lpElement = GetNextPosition(lpElement)) != NULL);
+  } while ((lpElement = GetNextPosition(lpElement)) != NULL);
 
   return nResult;
 }
