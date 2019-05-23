@@ -239,7 +239,7 @@ int GetElementCountWhere(LPPOSITION lpElement,
 void RemoveElement(LPPPOSITION lppElement, LPDEALLOC_ROUTINE lpfnDeallocFunc);
 
 /**
- * @name Sum
+ * @name SumElements
  * @brief Calculates the sum of a sequence of quantities, which itself is
  * computed from the data elements referred to by the elements of this
  * linked list.
@@ -249,6 +249,24 @@ void RemoveElement(LPPPOSITION lppElement, LPDEALLOC_ROUTINE lpfnDeallocFunc);
  * node.
  * @return Result of the summation, or -1 if an error occurred.
  */
-int Sum(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine);
+int SumElements(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine);
+
+/**
+ * @name SumElementsWhere
+ * @brief Calculates the sum of a sequence of quantities, which itself is
+ * computed from the data elements referred to by the elements of this
+ * linked list.  Only those elements that match the criteria provided by the
+ * compare routine are included in the summation.
+ * @param lpElement Address of any of the nodes in the linked list.
+ * @param lpfnSumRoutine Address of a callback that calculates each term
+ * of the summation, given the address of the data referenced by the current
+ * node.
+ * @param lpfnCompareRoutine Address of a callback that provides the criteria
+ * by which elements are to be included or excluded from the summation.
+ * @return Result of the summation, or -1 if an error occurred.  Returns zero
+ * if nothing is included in the sum.
+ */
+int SumElementsWhere(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine,
+    LPCOMPARE_ROUTINE lpfnCompareRoutine);
 
 #endif //__LIST_CORE_H__

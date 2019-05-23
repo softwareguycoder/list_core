@@ -251,7 +251,7 @@ void RemoveElement(LPPPOSITION lppElement,
 ///////////////////////////////////////////////////////////////////////////////
 // Sum function
 
-int Sum(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine)
+int SumElements(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine)
 {
   int nResult = -1;
   if (lpElement == NULL){
@@ -270,4 +270,8 @@ int Sum(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine)
   return nResult;
 }
 
+int SumElementsWhere(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine,
+    LPCOMPARE_ROUTINE lpfnCompareRoutine) {
+
+}
 //////////////////////////////////////////////////////////////////////////////
