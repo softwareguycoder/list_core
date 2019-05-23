@@ -261,12 +261,15 @@ int SumElements(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine);
  * @param lpfnSumRoutine Address of a callback that calculates each term
  * of the summation, given the address of the data referenced by the current
  * node.
+ * @param pvSearchKey Address of user data that is to be utilized as a search
+ * key to check whether elements meet the criteria for being included in the
+ * summation.
  * @param lpfnCompareRoutine Address of a callback that provides the criteria
  * by which elements are to be included or excluded from the summation.
  * @return Result of the summation, or -1 if an error occurred.  Returns zero
  * if nothing is included in the sum.
  */
 int SumElementsWhere(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine,
-    LPCOMPARE_ROUTINE lpfnCompareRoutine);
+    void* pvSearchKey, LPCOMPARE_ROUTINE lpfnCompareRoutine);
 
 #endif //__LIST_CORE_H__

@@ -271,7 +271,37 @@ int SumElements(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine)
 }
 
 int SumElementsWhere(LPPOSITION lpElement, LPSUMMATION_ROUTINE lpfnSumRoutine,
-    LPCOMPARE_ROUTINE lpfnCompareRoutine) {
-  return 0;
+    void* pvSearchKey, LPCOMPARE_ROUTINE lpfnCompareRoutine) {
+  int nResult = 0;
+
+  if (lpElement == NULL) {
+    return nResult; // No elements in linked list at all; sum is obviously 0
+  }
+
+  if (lpfnSumRoutine == NULL) {
+    return ERROR; // Required parameter
+  }
+
+  if (pvSearchKey == NULL) {
+    return ERROR; // Required parameter
+  }
+
+  if (lpfnCompareRoutine == NULL) {
+    return ERROR; // Required parameter
+  }
+
+  MoveToHeadPosition(&lpElement);
+  if (lpElement == NULL) {
+    return nResult; // Unable to move to head of list, so sum is zero
+  }
+
+  do {
+    if (!lpfnCompareRoutine(pvSearchKey, lpElement->pvData)) {
+      continue; // Skip elements for which criteria is not met
+    }
+    nResult += lpfnSumRoutine(lpElement->pvData);
+  } while((lpElement = GetNextPosition(lpElement)) != NULL);
+
+  return nResult;
 }
 //////////////////////////////////////////////////////////////////////////////
